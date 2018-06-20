@@ -1,5 +1,5 @@
 from unittest import TestCase, main
-from sfp import tail, pipe, compose
+from sfp import tail, pipe, compose, head
 
 
 class testTail(TestCase):
@@ -50,6 +50,16 @@ class testsCompose(TestCase):
 
         self.assertEqual(compose(foo, bar)(7), foo(bar(7)))
 
+class testHead(TestCase):
+    def test_should_get_head_to_list(self):
+        self.assertEqual(head([1, 2, 3, 4]), [1, 2, 3])
+
+    def test_should_get_head_to_iterable(self):
+        result = head(iter([1, 2, 3, 4]))
+        self.assertEqual(result, [1, 2, 3])
+
+    def test_should_return_blank_sequece(self):
+        self.assertEqual(head([]), [])
 
 if __name__ == '__main__':
     main()
