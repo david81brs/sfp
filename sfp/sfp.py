@@ -9,7 +9,7 @@ def tail(iterable):
 
 
 def pipe(*args):
-    """All the arguments given to this function will be passed as param to 
+    """All the arguments given to this function will be passed as param to
     `reduce` and it will return a function with all closures set to pipe in."""
     return reduce(_pipe, args)
 
@@ -24,3 +24,10 @@ def compose(*args):
     return reduce(lambda fun, tion: lambda arg: fun(tion(arg)),
                   args,
                   lambda arg: arg)
+
+
+def last(iterable):
+    """Get the last element of a iterable."""
+    r = [x for x in iterable]
+    r.reverse()
+    return r[:1]
